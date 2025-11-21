@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { User, UserType, UserStatus } from '../models/User';
+import User, { UserType, UserStatus } from '../models/User';  // ← FIXED: User is default import
 import { Profile } from '../models';
 import { validationResult } from 'express-validator';
 
@@ -17,7 +17,7 @@ const generateToken = (user: User): string => {
       email: user.email,
       userType: user.userType
     },
-    jwtSecret,
+    jwtSecret as string,  // ← FIXED: Added "as string"
     { expiresIn: process.env.JWT_EXPIRY || '7d' }
   );
 };
