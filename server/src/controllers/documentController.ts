@@ -72,7 +72,7 @@ export const uploadDocument = async (req: AuthRequest, res: Response): Promise<v
       mimeType: file.mimetype,
       uploadedAt: new Date(),
       tags: tags ? JSON.parse(tags) : [],
-      status: 'PENDING'  // ← FIXED: Changed to uppercase
+      status: 'PENDING' as any  // ← FIXED: Changed to uppercase
     });
 
     res.status(201).json({ 
@@ -103,7 +103,7 @@ export const signDocument = async (req: AuthRequest, res: Response): Promise<voi
     await document.update({
       signatureData,
       signedAt: new Date(),
-      status: 'SIGNED'  // ← FIXED: Changed to uppercase
+      status: 'SIGNED' as any  // ← FIXED: Changed to uppercase
     });
 
     res.status(200).json({ 
