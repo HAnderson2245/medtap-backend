@@ -116,7 +116,7 @@ export const cancelAppointment = async (req: AuthRequest, res: Response): Promis
       return;
     }
 
-    await appointment.update({ status: 'cancelled' });
+    await appointment.update({ status: 'CANCELLED' });  // ← FIXED: Changed to uppercase
 
     res.status(200).json({ 
       message: 'Appointment cancelled successfully',
