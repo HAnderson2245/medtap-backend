@@ -18,7 +18,7 @@ const generateToken = (user: User): string => {
       userType: user.userType
     },
     jwtSecret as string,  // ← FIXED: Added "as string"
-    { expiresIn: process.env.JWT_EXPIRY || '7d' }
+    { expiresIn: process.env.JWT_EXPIRY || '7d' } as any
   );
 };
 
