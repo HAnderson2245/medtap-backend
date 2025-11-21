@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { User, UserType } from '../models/User';
+import User, { UserType } from '../models/User';  // ← FIXED: User is default import
 
 // Extend Express Request type to include user
 export interface AuthRequest extends Request {
@@ -31,7 +31,7 @@ export const authenticateToken = async (
       return;
     }
 
-    const decoded = jwt.verify(token, jwtSecret) as {
+    const decoded = jwt.verify(token, jwtSecret as string) as {  // ← FIXED: Added "as string"
       id: string;
       email: string;
       userType: UserType;
